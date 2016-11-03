@@ -1,6 +1,6 @@
 {
   "name": "download-md5",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Download file utility, supports checking MD5 and finalize only when complete",
   "main": "index.js",
   "scripts": {
