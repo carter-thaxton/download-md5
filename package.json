@@ -1,0 +1,33 @@
+{
+  "name": "download-md5",
+  "version": "1.0.0",
+  "description": "Download file utility, supports checking MD5 and finalize only when complete",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "download-md5": "./bin/download-md5.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/carter-thaxton/download-md5.git"
+  },
+  "keywords": [
+    "download",
+    "md5",
+    "finalize",
+    "request"
+  ],
+  "author": "Carter Thaxton <carter.thaxton@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carter-thaxton/download-md5/issues"
+  },
+  "homepage": "https://github.com/carter-thaxton/download-md5#readme",
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "request": "^2.76.0",
+    "through": "^2.3.8"
+  }
+}
