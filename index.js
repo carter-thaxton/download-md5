@@ -19,8 +19,6 @@ function downloadFile(from_url, to_filename, args, cb) {
   var temp_file = null
   var dir = path.dirname(temp_filename)
 
-//  console.log('Downloading: %s to %s', from_url, to_filename)
-
   function done(err) {
     if (temp_file) {
       temp_file.end()
@@ -28,8 +26,6 @@ function downloadFile(from_url, to_filename, args, cb) {
     }
 
     if (err) {
-//      console.log('Error downloading: %s  (%s)', from_url, err)
-
       deleteFile(temp_filename, function(unlink_err) {
         if (unlink_err) {
           unlink_err.cause = err
@@ -69,7 +65,7 @@ function downloadFile(from_url, to_filename, args, cb) {
           }
         })).on('error', done)
       } else {
-        return done(new Error('Unexpected status code in response: ' + response.statusCode))
+        return done(new Error('Unexpected status code in response: ' + response.statusCode + ' from: ' + from_url))
       }
     })
   })
