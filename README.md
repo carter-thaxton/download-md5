@@ -9,7 +9,7 @@ You can also call `download-md5` from the command line, by installing it globall
 var download = require('download-md5')
 
 var url = 'https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg'
-download(url, 'results/grumpy_cat.jpg', { md5: null }, function(err) {
+download(url, 'results/grumpy_cat.jpg', { md5: 'dc3637149942510755db677cb1d1574e' }, function(err) {
   if (err)
     console.log(err)
   else
