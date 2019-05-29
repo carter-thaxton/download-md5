@@ -39,9 +39,10 @@ download(from_url, to_file, [opts])
 `to_file` is the output filename.  The directory will be created using `mkdirp` if it does not exist.
 
 `opts` is optional, and can have:
-  * md5 - check the MD5 against a known MD5, and only consider the download successful if it matches
-  * finalize - defaults to true.  If set to false, then the output file will remain with the `.download` suffix.
+  * `md5` - check the MD5 against a known MD5, and only consider the download successful if it matches
+  * `finalize` - defaults to true.  If set to false, then the output file will remain with the `.download` suffix.
     Call `download.finalizeDownload(to_file, cb)` to finish the job.
+  * anything else is passed to `request`, e.g. `timeout`
 
 
 License

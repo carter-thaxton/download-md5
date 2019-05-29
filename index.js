@@ -7,7 +7,7 @@ var path = require('path')
 var fs = require('fs')
 
 function downloadFile(from_url, to_filename, args, cb) {
-  // args is optional
+  // args is optional, and is passed along to request
   if (typeof(args) === 'function') {
     cb = args
     args = {}
@@ -40,7 +40,8 @@ function downloadFile(from_url, to_filename, args, cb) {
 
   mkdirp(dir, function(err) {
     if (err) return done(err)
-    var req = request(from_url)
+    var opts = Object.assign({ url: from_url }, args)  // pass all args to request
+    var req = request(opts)
     .once('error', done)
     .once('response', function(response) {
       if (response.statusCode === 200) {
