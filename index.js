@@ -19,7 +19,11 @@ function downloadFile(from_url, to_filename, args, cb) {
   var temp_file = null
   var dir = path.dirname(temp_filename)
 
+  var done_once = false
   function done(err) {
+    if (done_once) return;
+    done_once = true
+
     if (temp_file) {
       temp_file.end()
       temp_file = null
@@ -46,6 +50,8 @@ function downloadFile(from_url, to_filename, args, cb) {
     .once('response', function(response) {
       if (response.statusCode === 200) {
         temp_file = fs.createWriteStream(temp_filename)
+        temp_file.once('error', done)
+
         var calc_md5 = crypto.createHash('md5', { encoding: 'hex' })
 
         req.pipe(through(function(data) {
