@@ -52,17 +52,25 @@ function downloadFile(from_url, to_filename, args, cb) {
         temp_file = fs.createWriteStream(temp_filename)
         temp_file.once('error', done)
 
-        var calc_md5 = crypto.createHash('md5', { encoding: 'hex' })
+        var calc_md5 = null
+        if (expect_md5) {
+          calc_md5 = crypto.createHash('md5', { encoding: 'hex' })
+        }
 
         req.pipe(through(function(data) {
-          calc_md5.write(data)
+          if (calc_md5) {
+            calc_md5.write(data)
+          }
           temp_file.write(data)
         },
         function() {
           temp_file.once('close', function() {
             temp_file = null
-            calc_md5.end()
-            var actual_md5 = calc_md5.read()
+            var actual_md5 = null
+            if (calc_md5) {
+              calc_md5.end()
+              actual_md5 = calc_md5.read()
+            }
             if (expect_md5 && expect_md5 !== actual_md5) {
               return done(new Error('Mismatched MD5 - Expected: ' + expect_md5 + ' Got: ' + actual_md5))
             } else if (finalize)
